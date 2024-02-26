@@ -196,7 +196,20 @@
       "hardenedRuntime": true,
       "entitlements": "assets/entitlements.mac.plist",
       "entitlementsInherit": "assets/entitlements.mac.plist",
-      "gatekeeperAssess": false
+      "gatekeeperAssess": false,
+      "extraResources": [
+        "./assets/**",
+        {
+          "from": "./node_modules/@remotion/compositor-darwin-arm64/",
+          "to": "./app/dist/main",
+          "filter": [
+            "**.dylib",
+            "remotion",
+            "ffmpeg",
+            "ffprobe"
+          ]
+        }
+      ]
     },
     "dmg": {
       "contents": [
@@ -215,6 +228,19 @@
     "win": {
       "target": [
         "nsis"
+      ],
+      "extraResources": [
+        "./assets/**",
+        {
+          "from": "./node_modules/@remotion/compositor-win32-x64-msvc/",
+          "to": "./app/dist/main",
+          "filter": [
+            "**.dll",
+            "remotion.exe",
+            "ffmpeg.exe",
+            "ffprobe.exe"
+          ]
+        }
       ]
     },
     "linux": {
@@ -228,9 +254,6 @@
       "buildResources": "assets",
       "output": "release/build"
     },
-    "extraResources": [
-      "./assets/**"
-    ],
     "publish": {
       "provider": "github",
       "owner": "electron-react-boilerplate",
