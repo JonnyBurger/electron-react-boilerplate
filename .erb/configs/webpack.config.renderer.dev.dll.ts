@@ -9,6 +9,7 @@ import baseConfig from './webpack.config.base';
 import webpackPaths from './webpack.paths';
 import { dependencies } from '../../package.json';
 import checkNodeEnv from '../scripts/check-node-env';
+import { AllowOptionalDependenciesPlugin } from './optional-plugin';
 
 checkNodeEnv('development');
 
@@ -71,6 +72,7 @@ const configuration: webpack.Configuration = {
         },
       },
     }),
+    new AllowOptionalDependenciesPlugin(),
   ],
 };
 
